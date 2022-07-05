@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "incremental": true,
     "target": "es2020",
     "moduleResolution": "node",
@@ -10,9 +11,9 @@
     "noImplicitAny": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "useDefineForClassFields": true,
     "skipLibCheck": true,
     "strict": true,
     "module": "es6",
