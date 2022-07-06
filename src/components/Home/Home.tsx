@@ -7,6 +7,7 @@ import Sort from '../Sort/Sort';
 import Search from '../Search/Search';
 import API from '../../api';
 import { IParams } from '../../api/types/params';
+import LoadMore from '../LoadMore/LoadMore';
 
 const Home = () => {
   const [params, setParams] = useState<IParams>({
@@ -28,10 +29,12 @@ const Home = () => {
     <div className="text-white w-4/5 mx-auto">
       <h1 className="text-2xl font-bold text-center mb-10">Todo</h1>
       <Sort setParams={setParams} />
+      <CreateTodoField />
+
       <Search setParams={setParams} />
       {ToDoList.isLoading && <div>Идёт загрузка...</div>}
       {ToDoList.todos.map((todo) => <TodoItem key={todo.id} todo={todo} />)}
-      <CreateTodoField />
+      <LoadMore setParams={setParams} />
     </div>
   );
 };

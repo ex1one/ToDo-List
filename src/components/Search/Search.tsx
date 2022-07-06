@@ -8,7 +8,7 @@ interface ISearchProps {
 
 const Search: FC <ISearchProps> = ({ setParams }) => {
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setParams((prev) => ({ ...prev, query: event.target.value }));
+    setParams((prev) => ({ ...prev, _query: event.target.value })); // К сожалению не нашёл инфы про поиск в jsonPlaceholder
   };
 
   return (
