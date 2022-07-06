@@ -1,25 +1,20 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
 import Select from '../Select/Select';
-
-export interface IFilter {
-  query: string;
-  sort: string;
-}
+import { IParams } from '../../api/types/params';
 
 interface ISortProps {
-  setFilter: Dispatch<SetStateAction<IFilter>>;
+  setParams: Dispatch<SetStateAction<IParams>>;
 }
 
-const Sort: FC <ISortProps> = ({ setFilter }) => {
+const Sort: FC <ISortProps> = ({ setParams }) => {
   const filterMenu = [
     { title: 'Все', value: 'all' } as const,
-    { title: 'Выполненные', value: 'completed' } as const,
-    { title: 'Невыполненные', value: 'unfulfilled' } as const,
+    { title: 'Выполненные', value: 'true' } as const,
+    { title: 'Невыполненные', value: 'false' } as const,
   ];
-
   const clickHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = event.target;
-    setFilter((prev) => ({ ...prev, sort: value }));
+    setParams((prev) => ({ ...prev, completed: value === 'all' ? undefined : value }));
   };
 
   return (

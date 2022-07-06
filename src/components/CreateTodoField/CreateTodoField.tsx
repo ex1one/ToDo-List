@@ -1,5 +1,7 @@
 import React, { FC, useState } from 'react';
+import { observer } from 'mobx-react-lite';
 import ToDoList from '../../store/todo/toDoList';
+import Input from '../Input/Input';
 
 const CreateTodoField: FC = () => {
   const [title, setTitle] = useState('');
@@ -8,17 +10,18 @@ const CreateTodoField: FC = () => {
     setTitle(event.target.value);
   };
 
+  const onKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') ToDoList.addTodo(ToDoList.todos, title);
+  };
+
   return (
-    <div className="flex items-center justify-between mb-4 rounded-2xl border-zinc-800 border-2 px-5 py-3 w-full mt-20">
-      <input
-        type="text"
-        onChange={changeHandler}
-        onKeyPress={(e) => e.key === 'Enter' && ToDoList.addTodo(ToDoList.todos, title)}
-        className="bg-transparent w-full border-none outline-none"
-        placeholder="Add a task"
-      />
-    </div>
+    <Input
+      type="text"
+      placeholder="Add a task"
+      onChange={changeHandler}
+      onKeyPress={onKeyPress}
+    />
   );
 };
 
-export default CreateTodoField;
+export default observer(CreateTodoField);

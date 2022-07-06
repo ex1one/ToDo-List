@@ -1,26 +1,22 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
-import { IFilter } from '../Sort/Sort';
+import Input from '../Input/Input';
+import { IParams } from '../../api/types/params';
 
 interface ISearchProps {
-  setFilter: Dispatch<SetStateAction<IFilter>>;
+  setParams: Dispatch<SetStateAction<IParams>>;
 }
 
-const Search: FC <ISearchProps> = ({ setFilter }) => {
+const Search: FC <ISearchProps> = ({ setParams }) => {
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilter((prev) => ({ ...prev, query: event.target.value }));
+    setParams((prev) => ({ ...prev, query: event.target.value }));
   };
 
   return (
-    <div
-      className="flex items-center justify-between mb-4 rounded-2xl border-zinc-800 border-2 px-5 py-3 w-full"
-    >
-      <input
-        type="text"
-        onChange={changeHandler}
-        placeholder="Поиск"
-        className="bg-transparent w-full border-none outline-none"
-      />
-    </div>
+    <Input
+      placeholder="Поиск"
+      onChange={changeHandler}
+      type="text"
+    />
   );
 };
 
