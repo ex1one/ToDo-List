@@ -3,4 +3,5 @@ export interface IParams {
   _limit?: number;
   completed?: string;
   _query?: string;
+  id?: string;
 }
